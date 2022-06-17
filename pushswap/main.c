@@ -3,6 +3,10 @@
 
 int main(int ac, char **av)
 {
-	int i = 0;
-	printf("%d \n %s: ", chackalpha(av), av[1]);
+	int i;
+	i = 1;
+	while(av[1])
+	{
+		
+	}
 }
