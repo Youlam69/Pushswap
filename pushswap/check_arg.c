@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:41:51 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/17 21:58:05 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/18 00:04:58 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
 void free_stack(t_list **stack)
 {
 	t_list *tmp;
@@ -26,7 +27,7 @@ void free_stack(t_list **stack)
 
 int checkalpha(char **str)
 {
-	int i = 1;
+	int i = 0;
 	int j = 0;
 	
 	while(str[i])
@@ -107,22 +108,22 @@ int	splity(char **av, t_list **stack)
 	}
 	return 0;
 }
-int main(int ac, char **av)
-{
-	t_list *stack_a;
-	t_list *stack_b;
+// int main(int ac, char **av)
+// {
+// 	t_list *stack_a;
+// 	t_list *stack_b;
 
-	splity(av, &stack_a);
-	if (check_sort_dup(stack_a))
-	{
-		printf("stack kharj azabi\n");
-		free_stack(&stack_a);
-		return 0;
-	}
-	while(stack_a)
-	{
-		printf("%d\n", stack_a->content);
-		stack_a = stack_a->next;
-	}
-	return 0;
-}
+// 	splity(av, &stack_a);
+// 	if (check_sort_dup(stack_a))
+// 	{
+// 		printf("stack kharj azabi\n");
+// 		free_stack(&stack_a);
+// 		return 0;
+// 	}
+// 	while(stack_a)
+// 	{
+// 		printf("%d\n", stack_a->content);
+// 		stack_a = stack_a->next;
+// 	}
+// 	return 0;
+// }

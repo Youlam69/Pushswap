@@ -6,7 +6,7 @@
 #    By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/08 11:24:45 by ylamraou          #+#    #+#              #
-#    Updated: 2022/06/17 20:11:22 by ylamraou         ###   ########.fr        #
+#    Updated: 2022/06/17 23:35:14 by ylamraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,13 @@ CFLAG = -Wall -Wextra -Werror
 AR = ar rcs
 CC = cc
 # #########SRCS#############
-SRC = libft.c \
-lib_ft.c \
-ft_split.c \
+SRC = ft_split.c \
 ft_atoi.c \
-list.c
+list.c \
+check_arg.c \
+ft_putstr.c
+# lib_ft.c \
+libft.c \
 
 OBJS = $(SRC:.c=.o)
 # #########library#############
