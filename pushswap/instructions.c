@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   instructions.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/18 13:54:54 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/18 16:34:10 by ylamraou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pushswap.h"
 
-void	push_min_to_b(t_ps *ps)
-{
-	t_list	*smaller;
-	int		i;
+// void	push_min_to_b(t_ps *ps)
+// {
+// 	t_list	*smaller;
+// 	int		i;
 
-	i = 0;
-	while (i < ps->div)
-	{
-		while (1)
-		{
-			smaller = get_under_key(ps->stack_a, ps->key[i]);
-			if (!smaller)
-				break ;
-			else
-				push_to_b(ps, smaller);
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < ps->div)
+// 	{
+// 		while (1)
+// 		{
+// 			smaller = get_under_key(ps->stack_a, ps->key[i]);
+// 			if (!smaller)
+// 				break ;
+// 			else
+// 				push_to_b(ps, smaller);
+// 		}
+// 		i++;
+// 	}
+// }
 
 void	stack_swap(t_ps *ps, char *s, int bool)
 {
@@ -78,7 +90,7 @@ void	rotate(t_list **stack, int r)
 		lst = last_stack((*stack), r);
 		(*stack) = tmp->next;
 		lst->next = tmp;
-		lst->next->next = NULL;
+		tmp->next = NULL;
 	}
 	else if ((r) && (*stack) && (*stack)->next)
 	{

@@ -6,7 +6,7 @@
 #    By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/08 11:24:45 by ylamraou          #+#    #+#              #
-#    Updated: 2022/06/17 23:35:14 by ylamraou         ###   ########.fr        #
+#    Updated: 2022/06/18 15:26:00 by ylamraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,24 +16,24 @@ AR = ar rcs
 CC = cc
 # #########SRCS#############
 SRC = ft_split.c \
+lib_ft.c \
 ft_atoi.c \
 list.c \
 check_arg.c \
-ft_putstr.c
-# lib_ft.c \
-libft.c \
+instructions_utils.c \
+instructions.c
 
 OBJS = $(SRC:.c=.o)
 # #########library#############
 NAME = pushswap.a
 # ###########EXEC###############
-# EXEC = pushswap
+# EXEC = push_swap
 
 # all: $(EXEC)
 all: $(NAME)
 
 # $(EXEC) : $(NAME) 
-# 	@$(CC) $(CFLAG) $(NAME) -g -o pipex 
+# 	@$(CC) $(CFLAG) $(NAME) -g -o $(EXEC) 
 
 $(NAME): $(OBJS)
 	@$(AR) $(NAME) $(OBJS) 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/18 13:54:40 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/18 14:58:10 by ylamraou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pushswap.h"
 
 t_list	*ft_lstnew(int content)
@@ -11,7 +23,6 @@ t_list	*ft_lstnew(int content)
 	element->next = NULL;
 	return (element);
 }
-
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
@@ -48,4 +59,3 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		}
 	}
 }
-

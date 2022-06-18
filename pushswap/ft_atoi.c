@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/18 13:55:05 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/18 14:57:23 by ylamraou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	intrange(int* result, int a, int b, int sign)
+int	intrange(int *result, int a, int b, int sign)
 {
 	int	dix;
 	int	tmp;
@@ -12,21 +23,20 @@ int	intrange(int* result, int a, int b, int sign)
 		return (-1);
 	if (tmp < 0 && (tmp * dix) > 0)
 		return (-2);
-   	tmp = ((a * dix) + b) * (sign);
+	tmp = ((a * dix) + b) * sign;
 	if (sign < 0 && tmp < -2147483648)
 		return (-3);
 	else if (sign < 0 && tmp == -2147483648)
 	{
 		*result = (a * dix) + b;
-		return 0;
+		return (0);
 	}
 	*result = (a * dix) + b;
-    if (a > 0 && b > 0 && *result < 0)
-        return (-4);
-    else if (a < 0 && b < 0 && *result > 0)
-        return (-5);
-
-    return (0);
+	if (a > 0 && b > 0 && *result < 0)
+		return (-4);
+	else if (a < 0 && b < 0 && *result > 0)
+		return (-5);
+	return (0);
 }
 
 int	ft_atoi(const char *str, int *error)

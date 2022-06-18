@@ -6,17 +6,17 @@
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:41:51 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/18 00:04:58 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/18 14:57:46 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void free_stack(t_list **stack)
+void	free_stack(t_list **stack)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
-	while(*stack)
+	while (*stack)
 	{
 		tmp = *stack;
 		*stack = (*stack)->next;
@@ -25,38 +25,44 @@ void free_stack(t_list **stack)
 	*stack = NULL;
 }
 
-int checkalpha(char **str)
+int	checkalpha(char **str)
 {
-	int i = 0;
-	int j = 0;
-	
-	while(str[i])
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
 	{
 		j = 0;
-		while(str[i][j])
+		while (str[i][j])
 		{
-			if((str[i][j] < '0' || str[i][j] > '9') && str[i][0] != '-' && str[i][0] != '+')
-				return -1;
+			if ((str[i][j] < '0' || str[i][j] > '9')
+			&& str[i][0] != '-' && str[i][0] != '+')
+				return (-1);
 			j++;
 		}
 		i++;
 	}
-	return 0;
+	return (0);
 }
 
 int	check_sort_dup(t_list *stack)
 {
-	t_list *tmp;
-	int		ref_2 = 0;
-	int		ref = 1;
-	while(stack)
+	t_list	*tmp;
+	int		ref_2;
+	int		ref;
+
+	ref = 1;
+	ref_2 = 0;
+	while (stack)
 	{
 		tmp = stack->next;
-		while(tmp)
+		while (tmp)
 		{
-			if(stack->content == tmp->content)
+			if (stack->content == tmp->content)
 				ref_2 = 1;
-			if(stack->content > tmp->content)
+			if (stack->content > tmp->content)
 				ref = 0 ;
 			tmp = tmp->next;
 		}
@@ -65,48 +71,53 @@ int	check_sort_dup(t_list *stack)
 	return (ref + ref_2);
 }
 
+int	fill_stack(t_list **stack, char **str)
+{
+	int		error;
+	int		value;
+	int		j;
+
+	j = 0;
+	while (str[j])
+	{
+		value = ft_atoi(str[j], &error);
+		if (!error)
+			ft_lstadd_back(stack, ft_lstnew(value));
+		else
+		{
+			free_stack(stack);
+			return (1);
+		}
+		j++;
+	}
+	return (0);
+}
+
 int	splity(char **av, t_list **stack)
 {
 	int		i;
-	int		j;
-	int		error;
-	int		value;
 	char	**str;
 
 	i = 1;
 	str = NULL;
-	while(av[i])
+	while (av[i])
 	{
-		j= 0;
 		str = ft_split(av[i], ' ');
-		if(!str)
+		if (!str)
 		{
 			free_stack(stack);
-			return 1;
+			return (1);
 		}
 		if (checkalpha(str))
 		{
 			free_stack(stack);
-			return 1;
+			return (1);
 		}
-		else
-		{
-			while(str[j])
-			{
-				value = ft_atoi(str[j], &error);
-				if(!error)
-					ft_lstadd_back(stack, ft_lstnew(value));
-				else
-				{
-					free_stack(stack);
-					return 1;
-				}
-				j++;
-			}
-		}
+		else if (fill_stack(stack, str))
+			return (1);
 		i++;
 	}
-	return 0;
+	return (0);
 }
 // int main(int ac, char **av)
 // {

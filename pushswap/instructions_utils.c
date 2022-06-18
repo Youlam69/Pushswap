@@ -1,50 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib_ft.c                                           :+:      :+:    :+:   */
+/*   instructions_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 14:42:05 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/18 15:20:34 by ylamraou         ###   ########.fr       */
+/*   Created: 2022/06/18 15:23:00 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/18 15:39:50 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	ft_putstr_fd(char *s, int fd)
+t_list	*last_stack(t_list *node, int r)
 {
-	unsigned int	i;
-
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i] != '\0')
-		write(fd, &s[i++], 1);
-}
-
-void	ft_swap(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	unsigned char	*c1;
-	unsigned char	*c2;
-
-	c1 = (unsigned char *)s1;
-	c2 = (unsigned char *)s2;
-	while ((*c1 || *c2))
+	while (node->next)
 	{
-		if (*c1 != *c2)
-			return (*c1 - *c2);
-		c1++;
-		c2++;
+		if ((r) && (!node->next->next))
+			return (node);
+		node = node->next;
 	}
-	return (0);
+	return (node);
+}
+
+void	init_stack_id(t_ps *ps)
+{
+	int		id;
+	t_list	*tmp;
+
+	id = 0;
+	tmp = ps->stack_a;
+	while (tmp)
+	{
+		tmp->id = ++id;
+		tmp = tmp->next;
+	}
+	id = 0;
+	tmp = ps->stack_b;
+	while (tmp)
+	{
+		tmp->id = ++id;
+		tmp = tmp->next;
+	}
 }

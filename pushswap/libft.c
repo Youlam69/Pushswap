@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/18 13:54:47 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/18 15:20:40 by ylamraou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pushswap.h"
 
 size_t	ft_strlen(const char *str)
@@ -62,21 +74,4 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 		dst[lendst + i] = src[i];
 	dst[lendst + i] = '\0';
 	return (size);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	unsigned char	*c1;
-	unsigned char	*c2;
-
-	c1 = (unsigned char *)s1;
-	c2 = (unsigned char *)s2;
-	while ((*c1 || *c2))
-	{
-		if (*c1 != *c2)
-			return (*c1 - *c2);
-		c1++;
-		c2++;
-	}
-	return (0);
 }
