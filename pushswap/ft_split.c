@@ -6,11 +6,26 @@
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:29:51 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/17 21:03:40 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 01:49:50 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+void	free_splited(char ***str)
+{
+	int	i;
+
+	i = 0;
+	while (*str && (*str)[i])
+	{
+		free((*str)[i]);
+		i++;
+	}
+	if (*str)
+		free(*str);
+	*str = NULL;
+}
 
 int	size_str(char const *s, char c)
 {

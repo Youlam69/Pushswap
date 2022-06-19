@@ -6,13 +6,13 @@
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:41:51 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/18 14:57:46 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 01:35:04 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	free_stack(t_list **stack)
+void	free_stack(t_list **stack, int index)
 {
 	t_list	*tmp;
 
@@ -23,6 +23,8 @@ void	free_stack(t_list **stack)
 		free(tmp);
 	}
 	*stack = NULL;
+	if (index)
+		ft_putstr_fd("Error\n", 2);
 }
 
 int	checkalpha(char **str)
@@ -37,8 +39,9 @@ int	checkalpha(char **str)
 		j = 0;
 		while (str[i][j])
 		{
-			if ((str[i][j] < '0' || str[i][j] > '9')
-			&& str[i][0] != '-' && str[i][0] != '+')
+			if (j == 0 && (str[i][j] == '-' || str[i][j] == '+'))
+				j++;
+			if ((str[i][j] < '0' || str[i][j] > '9'))
 				return (-1);
 			j++;
 		}
@@ -53,7 +56,7 @@ int	check_sort_dup(t_list *stack)
 	int		ref_2;
 	int		ref;
 
-	ref = 1;
+	ref = 2;
 	ref_2 = 0;
 	while (stack)
 	{
@@ -85,7 +88,8 @@ int	fill_stack(t_list **stack, char **str)
 			ft_lstadd_back(stack, ft_lstnew(value));
 		else
 		{
-			free_stack(stack);
+			free_stack(stack, 1);
+			// free_splited(&str);
 			return (1);
 		}
 		j++;
@@ -93,48 +97,30 @@ int	fill_stack(t_list **stack, char **str)
 	return (0);
 }
 
-int	splity(char **av, t_list **stack)
+int	splity(char **av, t_ps *ps)
 {
 	int		i;
-	char	**str;
 
 	i = 1;
-	str = NULL;
 	while (av[i])
 	{
-		str = ft_split(av[i], ' ');
-		if (!str)
+		ps->str = ft_split(av[i], ' ');
+		if (!ps->str)
 		{
-			free_stack(stack);
+			free_stack(&ps->stack_a, 1);
 			return (1);
 		}
-		if (checkalpha(str))
+		if (checkalpha(ps->str))
 		{
-			free_stack(stack);
+			free_stack(&ps->stack_a, 1);
+			free_splited(&ps->str);
 			return (1);
 		}
-		else if (fill_stack(stack, str))
+		else if (fill_stack(&ps->stack_a, ps->str))
 			return (1);
+		if (ps->str)
+			free_splited(&ps->str);
 		i++;
 	}
 	return (0);
 }
-// int main(int ac, char **av)
-// {
-// 	t_list *stack_a;
-// 	t_list *stack_b;
-
-// 	splity(av, &stack_a);
-// 	if (check_sort_dup(stack_a))
-// 	{
-// 		printf("stack kharj azabi\n");
-// 		free_stack(&stack_a);
-// 		return 0;
-// 	}
-// 	while(stack_a)
-// 	{
-// 		printf("%d\n", stack_a->content);
-// 		stack_a = stack_a->next;
-// 	}
-// 	return 0;
-// }
