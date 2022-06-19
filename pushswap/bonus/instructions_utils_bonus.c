@@ -1,27 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   instructions_utils_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/17 01:29:37 by ylamraou          #+#    #+#             */
-/*   Updated: 2021/12/17 01:29:41 by ylamraou         ###   ########.fr       */
+/*   Created: 2022/06/18 15:23:00 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/19 19:09:12 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pushswap_bonus.h"
 
-char	*ft_strchr(const char *s, int c)
+t_list	*last_stack(t_list *node, int rev)
 {
-	unsigned int	len;
-
-	len = ft_strlen((char *)s) + 1;
-	while (len--)
+	while (node->next)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		if ((rev) && (!node->next->next))
+			return (node);
+		node = node->next;
 	}
-	return (0);
+	return (node);
+}
+
+void	init_stack_id(t_ps *ps)
+{
+	int		id;
+	t_list	*tmp;
+
+	id = 0;
+	tmp = ps->stack_a;
+	while (tmp)
+	{
+		tmp->id = ++id;
+		tmp = tmp->next;
+	}
+	id = 0;
+	tmp = ps->stack_b;
+	while (tmp)
+	{
+		tmp->id = ++id;
+		tmp = tmp->next;
+	}
 }

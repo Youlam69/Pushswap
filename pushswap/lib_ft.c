@@ -6,11 +6,25 @@
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:42:05 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/18 15:20:34 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 17:40:12 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+char	*ft_calloc(size_t count, size_t size)
+{
+	char	*s;
+	size_t	i;
+
+	i = -1;
+	s = malloc(count * size);
+	if (!s)
+		return (0);
+	while (++i < count * size)
+		s[i] = '\0';
+	return (s);
+}
 
 void	ft_putstr_fd(char *s, int fd)
 {

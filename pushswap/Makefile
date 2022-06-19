@@ -6,7 +6,7 @@
 #    By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/08 11:24:45 by ylamraou          #+#    #+#              #
-#    Updated: 2022/06/19 02:07:00 by ylamraou         ###   ########.fr        #
+#    Updated: 2022/06/19 19:52:29 by ylamraou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CC = cc
 # #########SRCS#############
 SRC = ft_split.c \
 lib_ft.c \
+libft.c \
 ft_atoi.c \
 list.c \
 check_arg.c \
@@ -26,35 +27,58 @@ utils.c \
 sorting.c  \
 sorting_utils.c \
 arr_tmp_sort.c \
-pushswap.c
-# sorting.c 
+pushswap.c \
+get_next_line_utils.c \
+get_next_line.c
 
+# #########SRCS_BONUS#############
+SRC_BONUS = ./bonus/check_arg_bonus.c \
+./bonus/ft_atoi_bonus.c \
+./bonus/get_next_line_bonus.c \
+./bonus/instructions_bonus.c \
+./bonus/lib_ft_bonus.c \
+./bonus/list_bonus.c \
+./bonus/utils_bonus.c \
+./bonus/checker_bonus.c \
+./bonus/ft_split_bonus.c \
+./bonus/get_next_line_utils_bonus.c \
+./bonus/instructions_utils_bonus.c \
+./bonus/libft_bonus.c
+
+# ######### HEADERS #############
+
+HEADER_BONUS = ./bonus/pushswap_bonus.h
 HEADER = pushswap.h
+############## OBJS #############
 
 OBJS = $(SRC:.c=.o)
-# #########library#############
-NAME = pushswap.a
-# ###########EXEC###############
-EXEC = push_swap
+OBJS_BONUS = $(SRC_BONUS:.c=.o)
 
-all: $(EXEC)
-# all: $(NAME)
+# ########### EXECS ###############
 
-$(EXEC) : $(NAME)
-	@$(CC) $(CFLAG) pushswap.c $(NAME) -o push_swap
+NAME = push_swap
+CHECKER = checker
 
-$(NAME): $(OBJS)
-	@$(AR) $(NAME) $(OBJS) 
 
-%.o : %.c $(HEADER)
+all: $(NAME)
+
+bonus:  all $(CHECKER)
+
+$(CHECKER) : $(OBJS_BONUS) $(HEADER_BONUS)
+	@$(CC) $(CFLAG) $(OBJS_BONUS) -o $(CHECKER)
+
+$(NAME): $(OBJS) $(HEADER)
+		@$(CC) $(CFLAG) $(OBJS) -o $(NAME)
+
+%.o : %.c 
 	$(CC) $(CFLAG) -c $<
 
 clean:
-	@rm -f $(OBJS)
+	@rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
-	@rm -f $(NAME) $(EXEC)
+	@rm -f $(NAME) $(CHECKER)
 
 re: fclean all
 
-.PHONY: fclean clean all re
+.PHONY: fclean clean all bonus re

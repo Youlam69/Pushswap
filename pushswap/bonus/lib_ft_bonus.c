@@ -1,25 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   lib_ft_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 21:56:51 by ylamraou          #+#    #+#             */
-/*   Updated: 2021/12/16 21:57:39 by ylamraou         ###   ########.fr       */
+/*   Created: 2022/06/17 14:42:05 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/19 19:09:07 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pushswap_bonus.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_calloc(size_t count, size_t size)
+{
+	char	*s;
+	size_t	i;
+
+	i = -1;
+	s = malloc(count * size);
+	if (!s)
+		return (0);
+	while (++i < count * size)
+		s[i] = '\0';
+	return (s);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	unsigned int	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i] != '\0')
+		write(fd, &s[i++], 1);
+}
+
+void	ft_swap(int *a, int *b)
+{
+	int	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	unsigned char	*c1;
 	unsigned char	*c2;
 
 	c1 = (unsigned char *)s1;
 	c2 = (unsigned char *)s2;
-	while ((*c1 || *c2) && n--)
+	while ((*c1 || *c2))
 	{
 		if (*c1 != *c2)
 			return (*c1 - *c2);

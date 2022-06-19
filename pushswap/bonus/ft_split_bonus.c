@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 01:29:51 by ylamraou          #+#    #+#             */
-/*   Updated: 2021/12/18 19:10:35 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 19:09:25 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pushswap_bonus.h"
 
-static int	size_str(char const *s, char c)
+void	free_splited(char ***str)
+{
+	int	i;
+
+	i = 0;
+	while (*str && (*str)[i])
+	{
+		free((*str)[i]);
+		i++;
+	}
+	if (*str)
+		free(*str);
+	*str = NULL;
+}
+
+int	size_str(char const *s, char c)
 {
 	int	len;
 
@@ -24,7 +39,7 @@ static int	size_str(char const *s, char c)
 	return (len);
 }
 
-static int	size_tab(char const *s, char c)
+int	size_tab(char const *s, char c)
 {
 	int	size_2d;
 
@@ -43,7 +58,7 @@ static int	size_tab(char const *s, char c)
 	return (size_2d);
 }
 
-static char const	*alloc_str(char **tab, char const *s, char c, int i)
+char const	*alloc_str(char **tab, char const *s, char c, int i)
 {
 	int		j;
 	char	*str;

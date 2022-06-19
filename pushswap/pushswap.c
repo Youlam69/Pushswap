@@ -6,7 +6,7 @@
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 23:29:58 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/19 02:08:06 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 19:16:04 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int	main(int ac, char **av)
 	data.size = stack_size(data.stack_a);
 	stack_sort(&data);
 	free_stack(&(data.stack_a), 0);
-	// while(1){}
 	return (0);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arg.c                                        :+:      :+:    :+:   */
+/*   check_arg_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 14:41:51 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/19 12:43:05 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 19:09:38 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "pushswap_bonus.h"
 
 void	free_stack(t_list **stack, int index)
 {

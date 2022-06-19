@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   list_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 21:52:30 by ylamraou          #+#    #+#             */
-/*   Updated: 2021/12/18 01:08:51 by ylamraou         ###   ########.fr       */
+/*   Created: 2022/06/18 13:54:40 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/19 19:09:00 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "pushswap_bonus.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(int content)
 {
 	t_list	*element;
 
@@ -22,4 +22,40 @@ t_list	*ft_lstnew(void *content)
 	element->content = content;
 	element->next = NULL;
 	return (element);
+}
+
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
+}
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	t_list	*tmp;
+
+	if (!lst)
+		return (NULL);
+	tmp = lst;
+	while (tmp->next)
+		tmp = tmp->next;
+	return (tmp);
+}
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
+
+	if (lst)
+	{
+		if (!*lst)
+			*lst = new;
+		else
+		{
+			tmp = ft_lstlast(*lst);
+			tmp->next = new;
+		}
+	}
 }

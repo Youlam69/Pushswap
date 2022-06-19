@@ -1,44 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.c                                            :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/18 13:54:47 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/19 17:37:59 by ylamraou         ###   ########.fr       */
+/*   Created: 2022/02/10 14:54:36 by ylamraou          #+#    #+#             */
+/*   Updated: 2022/06/19 18:10:13 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-size_t	ft_strlen(const char *str)
+char	*ft_strcatgt(char *dst, char *src)
 {
 	size_t	i;
+	size_t	lendst;
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
+	if (!src)
+		return (dst);
+	i = -1;
+	lendst = ft_strlen(dst);
+	while (src[++i])
+		dst[lendst + i] = src[i];
+	dst[lendst + i] = '\0';
+	return (dst);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strjoingt(char *s1, char *s2)
 {
-	unsigned int	len;
+	char	*str;
+	size_t	l1;
+	size_t	l2;
 
-	len = ft_strlen((char *)s) + 1;
-	while (len--)
-	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
-	}
-	return (NULL);
+	if (!s1 && !s2)
+		return (NULL);
+	l1 = ft_strlen(s1);
+	l2 = ft_strlen(s2);
+	str = ft_calloc(l1 + l2 + 1, sizeof(char));
+	str[l1 + l2] = '\0';
+	if (!str)
+		return (NULL);
+	ft_strcatgt(str, s1);
+	ft_strcatgt(str, s2);
+	return (str);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substrgt(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
 	char			*str;
@@ -49,33 +57,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		len = 0;
 	if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
-	str = (char *)malloc(len + 1 * (sizeof(char)));
+	str = (char *)malloc((sizeof(char) * len + 1));
 	if (!str)
 		return (NULL);
 	i = 0;
 	while (i < len && s[start])
 		str[i++] = s[start++];
 	str[i] = '\0';
-	return (str);
-}
-
-char	*ft_strtrim(char const *s1, char const *set)
-{
-	unsigned int	i;
-	char			*tab;
-
-	if (!s1 || !set)
-		return (NULL);
-	while (*s1)
+	if (str[0] == '\0')
 	{
-		if (!ft_strchr(set, *s1))
-			break ;
-		s1++;
+		free(str);
+		str = NULL;
+		return (NULL);
 	}
-	i = ft_strlen((char *)s1);
-	while (i > 0)
-		if (!ft_strchr(set, s1[--i]))
-			break ;
-	tab = ft_substr(s1, 0, i + 1);
-	return (tab);
+	return (str);
 }

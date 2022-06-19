@@ -6,17 +6,17 @@
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:23:00 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/18 15:39:50 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 13:27:40 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-t_list	*last_stack(t_list *node, int r)
+t_list	*last_stack(t_list *node, int rev)
 {
 	while (node->next)
 	{
-		if ((r) && (!node->next->next))
+		if ((rev) && (!node->next->next))
 			return (node);
 		node = node->next;
 	}

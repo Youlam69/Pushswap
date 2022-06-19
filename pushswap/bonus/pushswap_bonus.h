@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushswap.h                                         :+:      :+:    :+:   */
+/*   pushswap_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 15:09:13 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/19 19:53:10 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 19:20:13 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSHSWAP_H
-# define PUSHSWAP_H
+#ifndef PUSHSWAP_BONUS_H
+# define PUSHSWAP_BONUS_H
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -42,6 +42,8 @@ typedef struct s_ps
 	char		**str;
 }				t_ps;
 
+// void	ft_lstadd_front(t_list **lst, t_list *new);
+
 void	ft_swap(int *a, int *b);
 int		check_sort_dup(t_list *stack);
 t_list	*ft_lstnew(int content);
@@ -66,26 +68,22 @@ char	*get_next_line(int fd);
 
 t_list	*last_stack(t_list *node, int rev);
 void	init_stack_id(t_ps *ps);
-void	push_min_to_b(t_ps *ps);
+// void	push_min_to_b(t_ps *ps);
 void	stack_swap(t_ps *ps, char *s, int bool);
 
 void	push(t_ps *ps, char *s, int bool);
 void	stack_rotate(t_ps *ps, char *s, int bool);
 int		stack_size(t_list *stack);
-void	case_of_3(t_ps *ps);
-void	case_of_10(t_ps *ps);
-t_list	*get_under_key(t_list *stack, int i);
-void	case_of_100(t_ps *ps);
+// void	case_of_3(t_ps *ps);
+// void	case_of_10(t_ps *ps);
+// t_list	*get_under_key(t_list *stack, int i);
+// void	case_of_100(t_ps *ps);
 
 void	stack_sort(t_ps *ps);
 void	push_to_a(t_ps *ps, t_list *max);
 void	push_to_b(t_ps *ps, t_list *smaller);
 int		is_sorted(t_list *stack);
-int		stack_size(t_list *stack);
-t_list	*get_max(t_list *stack);
-t_list	*get_min(t_list *stack);
-void	get_key(t_ps *ps);
-
-void	sort_arr(t_ps *ps);
+// t_list	*get_max(t_list *stack);
+// t_list	*get_min(t_list *stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 13:55:05 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/18 14:57:23 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 19:16:41 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,3 @@ int	ft_atoi(const char *str, int *error)
 	}
 	return (res * sign);
 }
-
-// int main()
-// {
-// 	int h;
-// 	h = 555;
-// 	printf("hada result = %d\n", ft_atoi("-214", &h));
-// 	printf("hada h = %d\n", h);
-// }

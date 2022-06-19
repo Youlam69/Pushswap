@@ -6,7 +6,7 @@
 /*   By: ylamraou <ylamraou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/18 21:10:41 by ylamraou          #+#    #+#             */
-/*   Updated: 2022/06/18 22:42:35 by ylamraou         ###   ########.fr       */
+/*   Updated: 2022/06/19 15:28:45 by ylamraou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	case_of_10(t_ps *ps)
 					stack_rotate(ps, "ra", 1);
 				else
 					stack_rotate(ps, "rra", 1);
-				ps->min = get_min(ps->stack_a);
 			}
 			if (!(is_sorted(ps->stack_a))
 				&& ps->stack_a->content == ps->min->content)
@@ -67,11 +66,11 @@ void	case_of_10(t_ps *ps)
 	}
 }
 
-t_list	*get_under_key(t_list *stack, int i)
+t_list	*get_under_key(t_list *stack, int key_index)
 {
 	while (stack)
 	{
-		if (stack->content <= i)
+		if (stack->content <= key_index)
 			return (stack);
 		stack = stack->next;
 	}
@@ -80,7 +79,6 @@ t_list	*get_under_key(t_list *stack, int i)
 
 void	case_of_100(t_ps *ps)
 {
-	t_list	*min;
 	t_list	*max;
 
 	sort_arr(ps);
@@ -88,8 +86,8 @@ void	case_of_100(t_ps *ps)
 	push_min_to_b(ps);
 	while (ps->stack_a)
 	{
-		min = get_min(ps->stack_a);
-		push_to_b(ps, min);
+		ps->min = get_min(ps->stack_a);
+		push_to_b(ps, ps->min);
 	}
 	while (ps->stack_b)
 	{
